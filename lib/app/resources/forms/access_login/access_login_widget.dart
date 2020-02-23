@@ -13,6 +13,7 @@ class _AccessLoginWidgetState extends State<AccessLoginWidget> {
 
   @override
   Widget build(BuildContext context) {
+    accessLoginController.user.dataValue = {"email": "abc", "password": "sAHAHAs", "rememberUser": false};
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -28,8 +29,9 @@ class _AccessLoginWidgetState extends State<AccessLoginWidget> {
               child: SizedBox(
                 height: 42,
                 child: TextFormField(
+                  controller: TextEditingController(text: accessLoginController.user.email),
                   style: TextStyle(fontSize: 14, color: Colors.grey),
-                  onChanged: accessLoginController.changedEmail,
+                  onChanged: accessLoginController.user.changedEmail,
                   decoration: InputDecoration(
                     labelText: 'E-mail',
                     labelStyle: TextStyle(fontSize: 14),
@@ -46,8 +48,9 @@ class _AccessLoginWidgetState extends State<AccessLoginWidget> {
             child: SizedBox(
               height: 40,
               child: TextFormField(
+                controller: TextEditingController(text: accessLoginController.user.password),
                 obscureText: true,
-                onChanged: accessLoginController.changedPassword,
+                onChanged: accessLoginController.user.changedPassword,
                 decoration: InputDecoration(
                   suffixIcon: Icon(OMIcons.removeRedEye),
                   labelText: 'Senha',
@@ -64,10 +67,10 @@ class _AccessLoginWidgetState extends State<AccessLoginWidget> {
             child: Row(
               children: <Widget>[
                 Switch(
-                    value: accessLoginController.rememberUser,
+                    value: accessLoginController.user.rememberUser,
                     onChanged: (bool value) {
                       setState(() {
-                        accessLoginController.changedRememberUser(value);
+                        accessLoginController.user.changedRememberUser(value);
                       });
                     }),
                 Text('Lembrar do usuário'),
@@ -87,7 +90,9 @@ class _AccessLoginWidgetState extends State<AccessLoginWidget> {
                 'Entrar',
                 style: TextStyle(color: Colors.white),
               ),
-              onPressed: () {},
+              onPressed: () {
+                print(accessLoginController.user.dataValue);
+              },
             ),
           ),
           SizedBox(height: 13),
@@ -110,11 +115,11 @@ class _AccessLoginWidgetState extends State<AccessLoginWidget> {
           Observer(
             builder: (_) => Container(
               child: Text('Name: ' +
-                  accessLoginController.email +
+                  accessLoginController.user.email +
                   ', Email : ' +
-                  accessLoginController.password +
+                  accessLoginController.user.password +
                   ', Lembrar usuário : ' +
-                  accessLoginController.rememberUser.toString()),
+                  accessLoginController.user.rememberUser.toString()),
             ),
           ),
           Container(
@@ -124,11 +129,11 @@ class _AccessLoginWidgetState extends State<AccessLoginWidget> {
           Observer(
             builder: (_) => Container(
               child: Text('Name: ' +
-                  accessLoginController.email +
+                  accessLoginController.user.email +
                   ', Email : ' +
-                  accessLoginController.password +
+                  accessLoginController.user.password +
                   ', Lembrar usuário : ' +
-                  accessLoginController.rememberUser.toString()),
+                  accessLoginController.user.rememberUser.toString()),
             ),
           ),
         ],

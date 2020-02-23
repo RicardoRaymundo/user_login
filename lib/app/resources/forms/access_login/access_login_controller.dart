@@ -9,29 +9,5 @@ part 'access_login_controller.g.dart';
 class AccessLoginController = _AccessLoginBase with _$AccessLoginController;
 
 abstract class _AccessLoginBase with Store {
-  //UserData user = UserData();
-
-  @observable
-  String email = '';
-
-  @action
-  changedEmail(String value) {
-    email = value;
-  }
-
-  @observable
-  String password= '';
-
-  @action
-  changedPassword(String value) {
-    password = value;
-  }
-
-  @observable
-  bool rememberUser = false;
-
-  @action
-  changedRememberUser(bool value) {
-    rememberUser = value;
-  }
+  UserData user = UserData();
 }
